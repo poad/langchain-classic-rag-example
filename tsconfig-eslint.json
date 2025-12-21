@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig-test.json",
+  "include": [
+    "eslint.config.*s",
+    "vitest.config.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "cdk.out"
+  ]
+}
