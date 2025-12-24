@@ -34,7 +34,7 @@
     "vitest": "^4.0.16"
   },
   "dependencies": {
-    "@aws-sdk/credential-provider-node": "^3.957.0",
+    "@aws-sdk/credential-provider-node": "^3.958.0",
     "@langchain/aws": "^1.1.0",
     "@langchain/classic": "^1.0.7",
     "@langchain/core": "^1.1.8",
