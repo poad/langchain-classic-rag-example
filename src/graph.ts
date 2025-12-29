@@ -1,7 +1,7 @@
-import { createRetrievalChain } from '@langchain/classic/chains/retrieval';
-import { createStuffDocumentsChain } from '@langchain/classic/chains/combine_documents';
+import { createRetrievalChain } from 'langchain/chains/retrieval';
+import { createStuffDocumentsChain } from 'langchain/chains/combine_documents';
 // Fix https://github.com/langchain-ai/langchainjs/issues/9300
-// import { createHistoryAwareRetriever } from '@langchain/classic/chains/history_aware_retriever';
+import { createHistoryAwareRetriever } from 'langchain/chains/history_aware_retriever';
 import { ChatPromptTemplate, MessagesPlaceholder } from '@langchain/core/prompts';
 import { AzureChatOpenAI } from '@langchain/openai';
 import { ChatBedrockConverse } from '@langchain/aws';
@@ -20,8 +20,6 @@ import { LanguageModelLike } from '@langchain/core/language_models/base';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import log4js from 'log4js';
 import { models } from './constants.js';
-import { RunnableBranch, RunnablePassthrough, RunnableSequence } from '@langchain/core/runnables';
-import { StringOutputParser } from '@langchain/core/output_parsers';
 
 const logger = log4js.getLogger();
 
@@ -128,30 +126,30 @@ Use three sentences maximum and keep the answer concise.
   ]);
 
   // Fix <https://github.com/langchain-ai/langchainjs/issues/9300>
-  // const historyAwareRetrieverChain = await createHistoryAwareRetriever({
-  //   llm: model,
-  //   retriever,
-  //   rephrasePrompt,
-  // });
+  const historyAwareRetrieverChain = await createHistoryAwareRetriever({
+    llm: model,
+    retriever,
+    rephrasePrompt,
+  });
 
   // Refercense follows
   // - <https://github.com/langchain-ai/langchainjs/issues/9300>
   // - <https://github.com/langchain-ai/langchainjs/blob/cc502e1b67dbadcd123a7ea2964c791c2bbad581/libs/langchain-classic/src/chains/history_aware_retriever.ts#L76-L89>
-  const historyAwareRetrieverChain = RunnableBranch.from([
-    [
-      (input: { input: string; chat_history?: string | BaseMessage[] }) => !input.chat_history || input.chat_history.length === 0,
-      RunnableSequence.from([() => new RunnablePassthrough(), retriever]),  // Use RunnablePassthrough, not input
-    ],
-    RunnableSequence.from([
-      new RunnablePassthrough(),
-      rephrasePrompt,
-      model,
-      new StringOutputParser(),
-      retriever,
-    ]),
-  ]).withConfig({
-    runName: "history_aware_retriever",
-  });
+  // const historyAwareRetrieverChain = RunnableBranch.from([
+  //   [
+  //     (input: { input: string; chat_history?: string | BaseMessage[] }) => !input.chat_history || input.chat_history.length === 0,
+  //     RunnableSequence.from([() => new RunnablePassthrough(), retriever]),  // Use RunnablePassthrough, not input
+  //   ],
+  //   RunnableSequence.from([
+  //     new RunnablePassthrough(),
+  //     rephrasePrompt,
+  //     model,
+  //     new StringOutputParser(),
+  //     retriever,
+  //   ]),
+  // ]).withConfig({
+  //   runName: "history_aware_retriever",
+  // });
 
   const retrievalChain = await createRetrievalChain({
     combineDocsChain: documentChain,

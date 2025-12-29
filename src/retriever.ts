@@ -1,5 +1,5 @@
 import { Embeddings } from '@langchain/core/embeddings';
-import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
 async function createRetriever({embeddings}: {embeddings: Embeddings}) {
   const vectorStore = new MemoryVectorStore(embeddings);
