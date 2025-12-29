@@ -2,6 +2,7 @@ import log4js from 'log4js';
 import { v7 as uuidv7 } from 'uuid';
 import 'dotenv/config';
 
+import './instrumentation.js';
 import { createGraph } from './graph.js';
 
 const logger = log4js.getLogger();
