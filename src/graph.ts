@@ -31,6 +31,8 @@ interface SelectLlmResult {
   model: LanguageModelLike & BaseChatModel;
 }
 
+const memory = new MemorySaver();
+
 export function selectLlm(modelType?: string): SelectLlmResult {
   const model = models.find((model) => model.id === modelType);
   if (!model) {
@@ -178,7 +180,6 @@ Use three sentences maximum and keep the answer concise.
     .addEdge('model', END);
 
   // Compile the graph with a checkpointer object
-  const memory = new MemorySaver();
   return {
     platform,
     modelName,

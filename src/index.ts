@@ -20,8 +20,9 @@ const main = async () => {
     output: process.stdout
   });
 
-  const sessionId = uuidv7();
+  const threadId = uuidv7()
   while (true) {
+    const sessionId = uuidv7();
     const answer = await rl.question('Input the question: ');
     logger.info(answer);
     if (answer.length === 0) {
@@ -31,7 +32,7 @@ const main = async () => {
       rl.close();
       process.exit(0);
     }
-    await handle({ question: answer, model, embeddings, sessionId }, stdout);
+    await handle({ question: answer, model, embeddings, sessionId, threadId }, stdout);
   }
 }
 
