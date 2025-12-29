@@ -1,5 +1,4 @@
 import log4js from 'log4js';
-import { v7 as uuidv7 } from 'uuid';
 import 'dotenv/config';
 
 import './instrumentation.js';
@@ -8,7 +7,7 @@ import { createGraph } from './graph.js';
 const logger = log4js.getLogger();
 
 export async function handle(
-  event: { question: string, model: string, embeddings: string, sessionId: string },
+  event: { question: string, model: string, embeddings: string, sessionId: string, threadId: string },
   output: NodeJS.WritableStream,
 ) {
   logger.info('event', { event });
@@ -17,6 +16,7 @@ export async function handle(
     model: modelType,
     embeddings: embeddingType,
     sessionId,
+    threadId,
   } = event;
 
   try {
@@ -24,8 +24,6 @@ export async function handle(
       embeddingType,
       modelType,
     });
-
-    const threadId = uuidv7();
 
     const stream = await app.streamEvents(
       { input: question },
