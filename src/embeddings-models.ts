@@ -2,17 +2,9 @@ import { AzureOpenAIEmbeddings } from '@langchain/openai';
 import { BedrockEmbeddings } from '@langchain/aws';
 import { Embeddings } from '@langchain/core/embeddings';
 import { embeddings } from './constants.js';
-import log4js from 'log4js';
+import { createLogger } from './logger.js'
 
-const logger = log4js.getLogger();
-log4js.configure({
-  appenders: {
-    out: { type: "stdout" },
-  },
-  categories: {
-    default: { appenders: ["out"], level: "debug" },
-  },
-});
+const logger = await createLogger();
 
 interface EmbeddingsModel {
   model: Embeddings

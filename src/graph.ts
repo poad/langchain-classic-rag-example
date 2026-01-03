@@ -18,12 +18,12 @@ import { createRetriever } from './retriever.js';
 import { AIMessage, BaseMessage, HumanMessage } from '@langchain/core/messages';
 import { LanguageModelLike } from '@langchain/core/language_models/base';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
-import log4js from 'log4js';
 import { models } from './constants.js';
 import { RunnableBranch, RunnablePassthrough, RunnableSequence } from '@langchain/core/runnables';
 import { StringOutputParser } from '@langchain/core/output_parsers';
+import { createLogger } from './logger.js'
 
-const logger = log4js.getLogger();
+const logger = await createLogger();
 
 interface SelectLlmResult {
   platform: 'aws' | 'azure';

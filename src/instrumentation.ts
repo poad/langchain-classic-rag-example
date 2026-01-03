@@ -10,6 +10,9 @@ if (process.env.ENABLED_OPENINFERENCE_TELEMETRY === 'true') {
   const { LangChainInstrumentation } = await import('@arizeai/openinference-instrumentation-langchain');
   const lcCallbackManager = await import('@langchain/core/callbacks/manager');
   const { resourceFromAttributes } = await import('@opentelemetry/resources');
+  const { createLogger } = await import('./logger.js');
+
+  const logger = await createLogger();
 
   // For troubleshooting, set the log level to DiagLogLevel.DEBUG
   diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
@@ -37,5 +40,5 @@ if (process.env.ENABLED_OPENINFERENCE_TELEMETRY === 'true') {
 
   provider.register();
 
-  console.log('👀 OpenInference initialized');
+  logger.info('👀 OpenInference initialized');
 }

@@ -1,10 +1,10 @@
-import log4js from 'log4js';
 import 'dotenv/config';
 
 import './instrumentation.js';
 import { createGraph } from './graph.js';
+import { createLogger } from './logger.js'
 
-const logger = log4js.getLogger();
+const logger = await createLogger();
 
 export async function handle(
   event: { question: string, model: string, embeddings: string, sessionId: string, threadId: string },

@@ -1,12 +1,11 @@
 import 'dotenv/config';
 import * as readline from 'readline/promises';
 import { v7 as uuidv7 } from 'uuid';
-import log4js from 'log4js';
 import { stdout } from 'node:process';
 import { handle } from './app.js';
+import { createLogger } from './logger.js'
 
-const logger = log4js.getLogger();
-
+const logger = await createLogger();
 
 const model = process.env.LLM_MODEL || 'nova-micro';
 const embeddings = process.env.EMBEDDINGS || 'amazon.titan-embed-text-v2:0';
