@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc --build --clean && tsc",
-    "clean": "tsc --build --clean",
-    "watch": "tsc -w",
+    "build": "tsgo --build --clean && tsgo",
+    "clean": "tsgo --build --clean",
+    "watch": "tsgo -w",
     "test": "vitest run --passWithNoTests",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
@@ -21,7 +21,8 @@
     "@eslint/compat": "^2.0.0",
     "@eslint/js": "^9.39.2",
     "@stylistic/eslint-plugin": "^5.6.1",
-    "@types/node": "^25.0.3",
+    "@types/node": "^24.10.4",
+    "@typescript/native-preview": "7.0.0-dev.20260103.1",
     "dotenv": "^17.2.3",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
