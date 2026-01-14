@@ -20,8 +20,11 @@ if (process.env.ENABLED_OPENINFERENCE_TELEMETRY === 'true') {
   const provider = new NodeTracerProvider({
     spanProcessors: [new SimpleSpanProcessor(
       new OTLPTraceExporter({
-
-        url: process.env.COLLECTOR_ENDPOINT ?? 'http://localhost:6006/v1/traces',
+        url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT ?? 'http://localhost:6006/v1/traces',
+        headers: {
+          'x-api-key': process.env.OTEL_EXPORTER_OTLP_API_KEY ?? '',
+          'Langsmith-Project': 'default',
+        },
       }),
     ),
     ],

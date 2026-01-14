@@ -1,8 +1,9 @@
 import 'dotenv/config';
 
 import './instrumentation.js';
-import { createGraph } from './graph.js';
 import { createLogger } from './logger.js'
+import { createGraph } from './graph.js';
+// import { createChain } from './chains.js';
 
 const logger = await createLogger();
 
@@ -25,6 +26,10 @@ export async function handle(
       modelType,
     });
 
+    // const { platform, chain: app } = await createChain({
+    //   embeddingType,
+    //   modelType,
+    // });
     const stream = await app.streamEvents(
       { input: question },
       {
