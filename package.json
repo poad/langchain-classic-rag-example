@@ -20,7 +20,7 @@
   "devDependencies": {
     "@eslint/compat": "^2.0.1",
     "@eslint/js": "^9.39.2",
-    "@stylistic/eslint-plugin": "^5.7.0",
+    "@stylistic/eslint-plugin": "^5.7.1",
     "@types/node": "^25.0.10",
     "@typescript/native-preview": "7.0.0-dev.20260119.1",
     "dotenv": "^17.2.3",
@@ -32,16 +32,16 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.1",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "@arizeai/openinference-instrumentation-bedrock": "^0.4.8",
     "@arizeai/openinference-instrumentation-langchain": "^4.0.6",
-    "@aws-sdk/credential-provider-node": "^3.972.0",
+    "@aws-sdk/credential-provider-node": "^3.972.1",
     "@langchain/aws": "^1.2.1",
     "@langchain/classic": "^1.0.10",
-    "@langchain/core": "^1.1.16",
-    "@langchain/langgraph": "^1.1.1",
+    "@langchain/core": "^1.1.17",
+    "@langchain/langgraph": "^1.1.2",
     "@langchain/openai": "^1.2.3",
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.210.0",
@@ -52,7 +52,7 @@
     "@opentelemetry/sdk-trace-base": "^2.5.0",
     "@opentelemetry/sdk-trace-node": "^2.5.0",
     "@opentelemetry/semantic-conventions": "^1.39.0",
-    "langchain": "^1.2.11",
+    "langchain": "^1.2.13",
     "log4js": "^6.9.1",
     "uuid": "^13.0.0"
   }
