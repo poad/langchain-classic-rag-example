@@ -31,12 +31,24 @@ export async function createChain({
   logger.info('modelType', { modelType });
   const { platform, model, modelName } = selectLlm(modelType);
 
-  const systemPrompt = `You are an assistant for question-answering tasks.
-Use the following pieces of retrieved context to answer the question.
-If you don't know the answer, say that you don't know.
-Use three sentences maximum and keep the answer concise.
+  const systemPrompt = `あなたはドキュメント(文書)の内容を元に質問応答のアシスタントです。
 
-{context}`;
+以下は検索された文書の内容です。文書の構造（見出し、セクション、テーブルなど）を考慮して回答してください。
+
+<documents>
+{context}
+</documents>
+
+質問: {input}
+
+回答の際は以下に注意してください:
+- 文書の階層構造や見出しを参照して回答する
+- テーブルや箇条書きの情報は構造を保持したまま提示する
+- どのセクションから情報を取得したか明記する
+- メタデータ（ページ番号、セクション名など）があれば活用する
+- コンテキストに含まれない内容は回答しない
+
+回答:`;
   const qaPrompt = ChatPromptTemplate.fromMessages([
     ['system', systemPrompt],
     new MessagesPlaceholder('chat_history'),
