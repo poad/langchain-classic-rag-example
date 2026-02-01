@@ -3,3 +3,6 @@ packages:
 
 onlyBuiltDependencies:
   - protobufjs
+
+overrides:
+  fast-xml-parser@>=4.3.6 <=5.3.3: '>=5.3.4'

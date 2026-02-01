@@ -18,7 +18,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.28.2",
   "devDependencies": {
-    "@eslint/compat": "^2.0.1",
+    "@eslint/compat": "^2.0.2",
     "@eslint/js": "^9.39.2",
     "@stylistic/eslint-plugin": "^5.7.1",
     "@types/node": "^25.1.0",
@@ -37,12 +37,12 @@
   "dependencies": {
     "@arizeai/openinference-instrumentation-bedrock": "^0.4.8",
     "@arizeai/openinference-instrumentation-langchain": "^4.0.6",
-    "@aws-sdk/credential-provider-node": "^3.972.3",
-    "@langchain/aws": "^1.2.1",
-    "@langchain/classic": "^1.0.12",
-    "@langchain/core": "^1.1.17",
+    "@aws-sdk/credential-provider-node": "^3.972.4",
+    "@langchain/aws": "^1.2.2",
+    "@langchain/classic": "^1.0.13",
+    "@langchain/core": "^1.1.18",
     "@langchain/langgraph": "^1.1.2",
-    "@langchain/openai": "^1.2.3",
+    "@langchain/openai": "^1.2.4",
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.211.0",
     "@opentelemetry/exporter-trace-otlp-proto": "^0.211.0",
@@ -52,7 +52,7 @@
     "@opentelemetry/sdk-trace-base": "^2.5.0",
     "@opentelemetry/sdk-trace-node": "^2.5.0",
     "@opentelemetry/semantic-conventions": "^1.39.0",
-    "langchain": "^1.2.15",
+    "langchain": "^1.2.16",
     "log4js": "^6.9.1",
     "uuid": "^13.0.0"
   }
