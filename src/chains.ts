@@ -1,14 +1,14 @@
-import { createStuffDocumentsChain } from "@langchain/classic/chains/combine_documents";
-import { createRetrievalChain } from "@langchain/classic/chains/retrieval";
-import { BaseMessage } from "@langchain/core/messages";
-import { StringOutputParser } from "@langchain/core/output_parsers";
-import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
-import { RunnableBranch, RunnableSequence, RunnablePassthrough, RunnableWithMessageHistory } from "@langchain/core/runnables";
-import { ChatMessageHistory } from "@langchain/classic/stores/message/in_memory";
-import { selectEmbeddings } from "./embeddings-models.js";
-import { selectLlm } from "./llm.js";
-import { createRetriever } from "./retriever.js";
-import { createLogger } from './logger.js'
+import { selectEmbeddings } from './embeddings-models.js';
+import { selectLlm } from './llm.js';
+import { createRetriever } from './retriever.js';
+import { createLogger } from './logger.js';
+import { createStuffDocumentsChain } from '@langchain/classic/chains/combine_documents';
+import { createRetrievalChain } from '@langchain/classic/chains/retrieval';
+import { BaseMessage } from '@langchain/core/messages';
+import { StringOutputParser } from '@langchain/core/output_parsers';
+import { ChatPromptTemplate, MessagesPlaceholder } from '@langchain/core/prompts';
+import { RunnableBranch, RunnableSequence, RunnablePassthrough, RunnableWithMessageHistory } from '@langchain/core/runnables';
+import { ChatMessageHistory } from '@langchain/classic/stores/message/in_memory';
 
 const logger = await createLogger();
 
@@ -92,7 +92,7 @@ export async function createChain({
       retriever,
     ]),
   ]).withConfig({
-    runName: "history_aware_retriever",
+    runName: 'history_aware_retriever',
   });
 
   const retrievalChain = await createRetrievalChain({
@@ -108,8 +108,8 @@ export async function createChain({
       }
       return messageHistories[sessionId];
     },
-    inputMessagesKey: "input",
-    historyMessagesKey: "chat_history",
+    inputMessagesKey: 'input',
+    historyMessagesKey: 'chat_history',
   });
 
   // Compile the graph with a checkpointer object

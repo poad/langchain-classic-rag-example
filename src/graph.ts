@@ -1,3 +1,7 @@
+import { selectEmbeddings } from './embeddings-models.js';
+import { createRetriever } from './retriever.js';
+import { createLogger } from './logger.js';
+import { selectLlm } from './llm.js';
 import { createRetrievalChain } from '@langchain/classic/chains/retrieval';
 import { createStuffDocumentsChain } from '@langchain/classic/chains/combine_documents';
 // Fix https://github.com/langchain-ai/langchainjs/issues/9300
@@ -11,13 +15,9 @@ import {
   messagesStateReducer,
   Annotation,
 } from '@langchain/langgraph';
-import { selectEmbeddings } from './embeddings-models.js';
-import { createRetriever } from './retriever.js';
 import { AIMessage, BaseMessage, HumanMessage } from '@langchain/core/messages';
 import { RunnableBranch, RunnablePassthrough, RunnableSequence } from '@langchain/core/runnables';
 import { StringOutputParser } from '@langchain/core/output_parsers';
-import { createLogger } from './logger.js'
-import { selectLlm } from './llm.js';
 
 const logger = await createLogger();
 
@@ -100,7 +100,7 @@ Use three sentences maximum and keep the answer concise.
       retriever,
     ]),
   ]).withConfig({
-    runName: "history_aware_retriever",
+    runName: 'history_aware_retriever',
   });
 
   const retrievalChain = await createRetrievalChain({

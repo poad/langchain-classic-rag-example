@@ -1,64 +1,89 @@
-import { defineConfig } from 'eslint/config';
-import eslint from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
-import { configs, parser } from 'typescript-eslint';
-import eslintImport from 'eslint-plugin-import';
-
-import { includeIgnoreFile } from '@eslint/compat';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'eslint/config';
+import eslint from '@eslint/js';
+import { configs, parser } from 'typescript-eslint';
+import stylistic from '@stylistic/eslint-plugin';
+import { importX, createNodeResolver } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
+// @ts-expect-error ignore type errors
+import pluginPromise from 'eslint-plugin-promise';
+
+import { includeIgnoreFile } from '@eslint/compat';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 export default defineConfig(
-  includeIgnoreFile(gitignorePath),
   {
     ignores: [
+      ...(includeIgnoreFile(gitignorePath).ignores || []),
       '**/*.d.ts',
-      '**/*.js',
+      'src/tsconfig.json',
+      'src/stories',
+      '**/*.css',
       'node_modules/**/*',
       'out',
-      'dist',
       'cdk.out',
-      '.output',
+      'dist',
     ],
   },
   eslint.configs.recommended,
-  ...configs.strict,
-  ...configs.stylistic,
+  configs.strict,
+  configs.stylistic,
+  pluginPromise.configs['flat/recommended'],
   {
-    files: ['{bin,lib,lambda}/**/*.{ts,tsx}', '*.js'],
-    plugins: {
-      '@stylistic': stylistic,
-    },
+    files: ['**/*.ts', '*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       parser,
       parserOptions: {
+        projectService: {
+          allowDefaultProject: ['eslint.config.ts', 'vitest.config.ts'],
+        },
         tsconfigRootDir: __dirname,
-        project: ['./tsconfig-eslint.json'],
       },
     },
+    plugins: {
+      'import-x': importX,
+      '@stylistic': stylistic,
+    },
     extends: [
-      eslintImport.flatConfigs.recommended,
-      eslintImport.flatConfigs.typescript,
+      'import-x/flat/recommended',
     ],
     settings: {
-      'import/resolver': {
-        // You will also need to install and configure the TypeScript resolver
-        // See also https://github.com/import-js/eslint-import-resolver-typescript#configuration
-        'typescript': true,
-        'node': true,
-      },
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
+          alwaysTryTypes: true,
+        }),
+        createNodeResolver(),
+      ],
     },
     rules: {
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/quotes': ['error', 'single'],
+
+      'import-x/order': [
+        'error',
+        {
+          'groups': [
+            // Imports of builtins are first
+            'builtin',
+            // Then sibling and parent imports. They can be mingled together
+            ['sibling', 'parent'],
+            // Then index file imports
+            'index',
+            // Then any arcane TypeScript imports
+            'object',
+            // Then the omitted imports: internal, external, type, unknown
+          ],
+        },
+      ],
     },
   },
 );

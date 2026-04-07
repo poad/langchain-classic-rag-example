@@ -1,8 +1,8 @@
+import { embeddings } from './constants.js';
+import { createLogger } from './logger.js';
 import { AzureOpenAIEmbeddings } from '@langchain/openai';
 import { BedrockEmbeddings } from '@langchain/aws';
 import { Embeddings } from '@langchain/core/embeddings';
-import { embeddings } from './constants.js';
-import { createLogger } from './logger.js'
 
 const logger = await createLogger();
 

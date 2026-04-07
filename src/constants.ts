@@ -88,10 +88,10 @@ export const embeddings = [
     platform: 'aws',
 
   },
-    {
+  {
     id: 'text-embedding-3-large',
     name: 'text-embedding-3-large (Azure OpenAI)',
     modelId: 'text-embedding-3-large',
     platform: 'azure',
-  }
+  },
 ];

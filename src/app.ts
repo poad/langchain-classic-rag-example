@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 import './instrumentation.js';
-import { createLogger } from './logger.js'
+import { createLogger } from './logger.js';
 import { createGraph } from './graph.js';
 // import { createChain } from './chains.js';
 

@@ -24,6 +24,6 @@ const createLogger = async (): Promise<Logger> => {
   const logger = log4js.getLogger();
 
   return logger;
-}
+};
 
 export { createLogger };
