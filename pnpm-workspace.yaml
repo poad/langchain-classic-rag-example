@@ -16,6 +16,8 @@ minimumReleaseAgeExclude:
   - dotenv@17.4.1
   - '@typescript/native-preview'
   - '@typescript/native-preview-*'
+  - '@langchain/classic@1.0.28'
+  - langsmith@0.5.18
 
 overrides:
   brace-expansion@<1.1.13: '>=1.1.13'
@@ -24,6 +26,7 @@ overrides:
   handlebars@>=4.0.0 <4.7.9: '>=4.7.9'
   handlebars@>=4.0.0 <=4.7.8: '>=4.7.9'
   handlebars@>=4.6.0 <=4.7.8: '>=4.7.9'
+  langsmith@<=0.5.17: '>=0.5.18'
   lodash-es@<=4.17.23: '>=4.18.0'
   lodash-es@>=4.0.0 <=4.17.23: '>=4.18.0'
   rollup@>=4.0.0 <4.59.0: '>=4.59.0'
