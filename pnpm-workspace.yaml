@@ -3,37 +3,22 @@ packages:
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
+  - fast-xml-parser@5.7.1
+  - fast-xml-builder@1.1.5
+  - uuid@14.0.0
+
+  - '@typescript/native-preview@7.0.0-dev.20260418.1'
+  - '@typescript/*'
+
   - '@aws-sdk/*'
   - '@smithy/*'
-  - '@modelcontextprotocol/sdk'
-  - '@anthropic-ai/claude-agent-sdk'
-  - handlebars
-  - lodash-es
-  - path-to-regexp
-  - vite@8.0.6
-  - rolldown@1.0.0-rc.13
-  - '@rolldown/*'
-  - dotenv@17.4.1
-  - '@typescript/native-preview'
-  - '@typescript/native-preview-*'
-  - '@langchain/classic@1.0.28'
-  - langsmith@0.5.19
 
 overrides:
-  brace-expansion@<1.1.13: '>=1.1.13'
   eslint-import-resolver-typescript: '>=4'
+  fast-xml-parser@<5.7.0: '>=5.7.0'
   file-type@>=13.0.0 <21.3.1: '>=21.3.1'
-  handlebars@>=4.0.0 <4.7.9: '>=4.7.9'
-  handlebars@>=4.0.0 <=4.7.8: '>=4.7.9'
-  handlebars@>=4.6.0 <=4.7.8: '>=4.7.9'
-  langsmith@<=0.5.17: '>=0.5.18'
-  langsmith@<=0.5.18: '>=0.5.19'
-  lodash-es@<=4.17.23: '>=4.18.0'
-  lodash-es@>=4.0.0 <=4.17.23: '>=4.18.0'
-  protobufjs@<7.5.5: '>=7.5.5'
-  rollup@>=4.0.0 <4.59.0: '>=4.59.0'
   semver: '>=7'
-  typescipt: '>=6'
+  uuid@<14.0.0: '>=14.0.0'
 
 strictPeerDependencies: false
 
