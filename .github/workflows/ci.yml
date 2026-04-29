@@ -28,6 +28,7 @@ jobs:
       with:
         run_install: |
           - recursive: true
+          - args: [--no-frozen-lockfile]
 
     - name: Build
       run: |
