@@ -28,16 +28,6 @@ jobs:
         run_install: |
           - recursive: true
 
-    - name: Build
-      run: |
-        pnpm --filter @llm-ts-example/common-core build
-        pnpm --filter @llm-ts-example/common-backend build
-
-    - name: Debug workspace links
-      run: |
-        pnpm list -r --depth 0
-        pnpm why @llm-ts-example/common-backend
-
     - name: Build all packages
       run: pnpm build
 
