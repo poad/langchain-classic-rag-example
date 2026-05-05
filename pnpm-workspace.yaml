@@ -12,7 +12,6 @@ minimumReleaseAgeExclude:
   - fast-xml-builder@1.1.5
   - uuid@14.0.0
 
-  - '@typescript/native-preview@7.0.0-dev.20260418.1'
   - '@typescript/*'
 
   - '@aws-sdk/*'
