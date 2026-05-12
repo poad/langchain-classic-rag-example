@@ -31,12 +31,14 @@ minimumReleaseAgeExclude:
   - '@opentelemetry/exporter-metrics-otlp-http@0.217.0'
   - '@opentelemetry/sdk-logs@0.217.0'
   - '@opentelemetry/otlp-grpc-exporter-base@0.217.0'
+  - protobufjs@8.0.2
 
 overrides:
   '@opentelemetry/exporter-prometheus@<0.217.0': ^0.217.0
   '@opentelemetry/sdk-node@<0.217.0': ^0.217.0
   eslint-import-resolver-typescript: '^4.4.4'
   fast-xml-builder@<=1.1.6: ^1.1.7
+  protobufjs@>=8.0.0 <=8.0.1: ^8.0.2
   semver: '>=7'
   uuid: ^14.0.0
 
