@@ -8,6 +8,9 @@ allowBuilds:
 
 blockExoticSubdeps: true
 
+configDependencies:
+  '@pnpm/pacquet': 0.2.3
+
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
   - '@typescript/*'
