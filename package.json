@@ -21,7 +21,7 @@
     "@eslint/compat": "^2.1.0",
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@types/node": "^25.9.0",
+    "@types/node": "^25.9.1",
     "@typescript/native-preview": "7.0.0-dev.20260514.1",
     "dotenv": "^17.4.2",
     "eslint": "^10.4.0",
