@@ -81,13 +81,9 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@opentelemetry/exporter-prometheus@<0.217.0': ^0.217.0
-  '@opentelemetry/sdk-node@<0.217.0': ^0.217.0
   esbuild@>=0.17.0 <0.28.1: ^0.28.1
   esbuild@>=0.27.3 <0.28.1: ^0.28.1
-  eslint-import-resolver-typescript: ^4.4.4
-  fast-xml-builder@<=1.1.6: ^1.1.7
-  protobufjs@>=8.0.0 <=8.0.1: ^8.0.2
+  eslint-import-resolver-typescript: ^4.4.5
   semver: '>=7'
   uuid: ^14.0.0
 
