@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'eslint/config';
+import { defineConfig, includeIgnoreFile } from 'eslint/config';
 import eslint from '@eslint/js';
 import { configs, parser } from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
@@ -9,16 +9,14 @@ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescrip
 // @ts-expect-error ignore type errors
 import pluginPromise from 'eslint-plugin-promise';
 
-import { includeIgnoreFile } from '@eslint/compat';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 export default defineConfig(
+  includeIgnoreFile(gitignorePath),
   {
     ignores: [
-      ...(includeIgnoreFile(gitignorePath).ignores || []),
       '**/*.d.ts',
       'src/tsconfig.json',
       'src/stories',
@@ -29,9 +27,8 @@ export default defineConfig(
       'dist',
     ],
   },
-  eslint.configs.recommended,
-  configs.strict,
-  configs.stylistic,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   pluginPromise.configs['flat/recommended'],
   {
     files: ['**/*.ts', '*.js'],
@@ -47,11 +44,12 @@ export default defineConfig(
       },
     },
     plugins: {
-      'import-x': importX,
       '@stylistic': stylistic,
     },
     extends: [
-      'import-x/flat/recommended',
+      eslint.configs.recommended,
+      configs.strict,
+      configs.stylistic,
     ],
     settings: {
       'import-x/resolver-next': [
