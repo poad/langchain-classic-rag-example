@@ -1,4 +1,4 @@
-import log4js from 'log4js';
+import { getLogger } from 'log4js';
 
 export interface Logger {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -21,7 +21,7 @@ export interface Logger {
 }
 
 const createLogger = async (): Promise<Logger> => {
-  const logger = log4js.getLogger();
+  const logger = getLogger();
 
   return logger;
 };
