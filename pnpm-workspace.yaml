@@ -10,6 +10,8 @@ blockExoticSubdeps: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
+  - pnpm@11.10.0
+
   - '@typescript/typescript-aix-ppc64@7.0.2'
   - '@typescript/typescript-darwin-arm64@7.0.2'
   - '@typescript/typescript-darwin-x64@7.0.2'
@@ -37,8 +39,6 @@ overrides:
   eslint-import-resolver-typescript: '^4.4.5'
   semver: '>=7'
   uuid: ^14.0.1
-
-  typescript: ^6.0.3
 
 strictPeerDependencies: false
 
