@@ -33,7 +33,7 @@
     "vitest": "^4.1.11"
   },
   "dependencies": {
-    "@arizeai/openinference-instrumentation-bedrock": "^0.4.31",
+    "@arizeai/openinference-instrumentation-bedrock": "^0.5.4",
     "@arizeai/openinference-instrumentation-langchain": "^4.1.4",
     "@aws-sdk/credential-provider-node": "^3.972.84",
     "@langchain/aws": "^1.4.6",
@@ -42,11 +42,11 @@
     "@langchain/langgraph": "^1.4.18",
     "@langchain/openai": "^1.6.2",
     "@opentelemetry/api": "^1.9.1",
-    "@opentelemetry/exporter-trace-otlp-http": "^0.221.0",
-    "@opentelemetry/exporter-trace-otlp-proto": "^0.221.0",
-    "@opentelemetry/instrumentation": "^0.221.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.222.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "^0.222.0",
+    "@opentelemetry/instrumentation": "^0.222.0",
     "@opentelemetry/resources": "^2.11.0",
-    "@opentelemetry/sdk-node": "^0.221.0",
+    "@opentelemetry/sdk-node": "^0.222.0",
     "@opentelemetry/sdk-trace-base": "^2.11.0",
     "@opentelemetry/sdk-trace-node": "^2.11.0",
     "@opentelemetry/semantic-conventions": "^1.43.0",
@@ -57,7 +57,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.10.1",
+      "version": "12.11.1",
       "onFail": "download"
     },
     "runtime": {
