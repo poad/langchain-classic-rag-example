@@ -11,10 +11,6 @@ blockExoticSubdeps: true
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
   - pnpm@12.11.1
-  - '@opentelemetry/propagator-jaeger@2.9.0'
-  - js-yaml@5.2.2
-  - brace-expansion@5.0.8 || 5.0.9
-  - nanoid@3.3.17
   - handlebars@4.7.10
 
 overrides:
