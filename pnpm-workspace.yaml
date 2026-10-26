@@ -10,8 +10,7 @@ blockExoticSubdeps: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - pnpm@12.11.1
-  - handlebars@4.7.10
+  - pnpm@12.15.0
 
 overrides:
   '@opentelemetry/core@<2.8.0': ^2.8.0
