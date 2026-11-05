@@ -1,9 +1,13 @@
 if (process.env.ENABLED_OPENINFERENCE_TELEMETRY === 'true') {
   const { registerInstrumentations } = await import('@opentelemetry/instrumentation');
+  const { context, propagation, trace } = await import('@opentelemetry/api');
+  const { CompositePropagator, W3CBaggagePropagator, W3CTraceContextPropagator }  = await import('@opentelemetry/core');
+  const { AsyncLocalStorageContextManager }  = await import('@opentelemetry/context-async-hooks');
+
   const {
-    NodeTracerProvider,
+    TracerProvider,
     SimpleSpanProcessor,
-  } = await import('@opentelemetry/sdk-trace-node');
+  } = await import('@opentelemetry/sdk-trace');
   const { OTLPTraceExporter } = await import('@opentelemetry/exporter-trace-otlp-proto');
   const { ATTR_SERVICE_NAME } = await import('@opentelemetry/semantic-conventions');
   const { diag, DiagConsoleLogger, DiagLogLevel } = await import('@opentelemetry/api');
@@ -17,8 +21,8 @@ if (process.env.ENABLED_OPENINFERENCE_TELEMETRY === 'true') {
   // For troubleshooting, set the log level to DiagLogLevel.DEBUG
   diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
 
-  const provider = new NodeTracerProvider({
-    spanProcessors: [new SimpleSpanProcessor(
+  const provider = new TracerProvider({
+    spanProcessors: [new SimpleSpanProcessor({exporter:
       new OTLPTraceExporter({
         url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT ?? 'http://localhost:6006/v1/traces',
         headers: {
@@ -26,6 +30,7 @@ if (process.env.ENABLED_OPENINFERENCE_TELEMETRY === 'true') {
           'Langsmith-Project': 'default',
         },
       }),
+    },
     ),
     ],
     resource: resourceFromAttributes({
@@ -41,7 +46,11 @@ if (process.env.ENABLED_OPENINFERENCE_TELEMETRY === 'true') {
   const lcInstrumentation = new LangChainInstrumentation();
   lcInstrumentation.manuallyInstrument(lcCallbackManager);
 
-  provider.register();
+  trace.setGlobalTracerProvider(provider);
+  context.setGlobalContextManager(new AsyncLocalStorageContextManager().enable());
+  propagation.setGlobalPropagator(new CompositePropagator({
+    propagators: [new W3CTraceContextPropagator(), new W3CBaggagePropagator()],
+  }));
 
   logger.info('👀 OpenInference initialized');
 }
